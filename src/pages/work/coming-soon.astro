@@ -1,0 +1,44 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero2 from '~/components/widgets/Hero2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+import { getPermalink } from '../../utils/permalinks';
+
+const metadata = {
+  title: 'Coming Soon',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero2 Widget ******************* -->
+  <div class="mt-12"></div>
+
+  <Hero2
+    tagline="Comming Soon"
+    title="We are Constantly Looking For New Ways to Give Back!"
+    subtitle="We are commited to funding opportunities that enhance and enrich our comunity. Please check back at a later date for more."
+    actions={[
+      { variant: 'primary', text: 'Get Involved', href: getPermalink("involved"), icon: 'tabler:square-rounded-arrow-right' },
+      { text: 'Donate', href: 'paypal' },
+    ]}
+    image={{
+      src: '~/assets/images/RJ Croce Foundation Logo.png',
+      alt: 'Foundation Logo',
+    }}
+  />
+
+  <CallToAction
+    title="Check Out Our Other Work"
+    subtitle="We are working on the content of these pages. You will see them very soon. Stay tuned!"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Brookdale Scholarships',
+        href: getPermalink("work/brookdale"),
+        icon: '',
+      },
+    ]}
+  />
+</Layout>

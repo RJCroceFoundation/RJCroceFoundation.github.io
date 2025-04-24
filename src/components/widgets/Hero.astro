@@ -1,0 +1,149 @@
+---
+import Image from '~/components/common/Image.astro';
+import Button from '~/components/ui/Button.astro';
+
+import OutingVid from '../../assets/images/outing.mp4';
+
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getPermalink } from '../../utils/permalinks';
+
+import type { Hero as Props } from '~/types';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline,
+
+  content = await Astro.slots.render('content'),
+  actions = await Astro.slots.render('actions'),
+  image = await Astro.slots.render('image'),
+
+  id,
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<section
+  class="relative md:mt-[2px] not-prose bg-[url(~/assets/images/RJ_Golfing.JPG)] bg-cover bg-center"
+  {...id ? { id } : {}}
+>
+  <div class="absolute inset-0 pointer-events-none bg-gray-500 opacity-50" aria-hidden="true">
+    <slot name="bg">
+      {bg ? <Fragment set:html={bg} /> : null}
+    </slot>
+  </div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
+    <div class="py-12 md:py-20 flex flex-col lg:flex-row gap-12">
+      <div class="text-center pb-10 md:pb-16 basis-full text-slate-50 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+        {
+          tagline && (
+            <p
+              class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+              set:html={tagline}
+            />
+          )
+        }
+        {
+          title && (
+            <h1
+              class="text-5xl underline md:text-6xl font-bold leading-tighter tracking-tighter mb-8 font-heading intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+              set:html={title}
+            />
+          )
+        }
+        <div class="max-w-3xl mx-auto">
+          {
+            subtitle && (
+              <p
+                class="text-2xl mb-6 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+                set:html={subtitle}
+              />
+            )
+          }
+          <div class="mt-12 motion-safe:md:intersect:animate-fade">
+            <Button data-astro-reload
+              variant="primary"
+              text="Get Involved"
+              target="_blank"
+              href={getPermalink("/involved")}
+              icon= 'tabler:square-rounded-arrow-right'
+            >
+            </Button>
+            
+          </div>
+          <div class="mt-12">
+            <video class="h-full w-full rounded-lg" controls>
+              <source src={OutingVid} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          {
+            actions && (
+              <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+                {Array.isArray(actions) ? (
+                  actions.map((action) => (
+                    <div class="flex w-full sm:w-auto">
+                      <Button {...(action || {})} class="w-full sm:mb-0" />
+                    </div>
+                  ))
+                ) : (
+                  <Fragment set:html={actions} />
+                )}
+              </div>
+            )
+          }
+          {content && <Fragment set:html={content} />}
+        </div>
+        <div
+          class="intersect-once intercept-no-queue intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+        >
+          {
+            image && (
+              <div class="relative m-auto max-w-5xl">
+                {typeof image === 'string' ? (
+                  <Fragment set:html={image} />
+                ) : (
+                  <Image
+                    class="mx-auto rounded-md w-full"
+                    widths={[400, 768, 1024, 2040]}
+                    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+                    loading="eager"
+                    width={1024}
+                    height={576}
+                    {...image}
+                  />
+                )}
+              </div>
+            )
+          }
+        </div>
+      </div>
+      <div class="text-center pb-10 md:pb-16 flex flex-col gap-8">
+        <Image
+          src="~/assets/images/Golf_Carts.jpg"
+          class="w-full md:h-full rounded shadow-lg bg-gray-400 dark:bg-slate-700"
+          widths={[400, 900]}
+          width={400}
+          sizes="(max-width: 900px) 400px, 900px"
+          alt={'golf carts'}
+          layout="cover"
+          loading="eager"
+          decoding="async"
+        />
+        <Image
+          src="~/assets/images/Trophies.jpg"
+          class="w-full md:h-full rounded shadow-lg bg-gray-400 dark:bg-slate-700"
+          widths={[400, 900]}
+          width={400}
+          sizes="(max-width: 700px) 400px, 900px"
+          alt={'trophies'}
+          aspectRatio="16:9"
+          layout="cover"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+</section>

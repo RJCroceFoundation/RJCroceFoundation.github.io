@@ -1,0 +1,42 @@
+---
+import WidgetWrapper from './WidgetWrapper.astro';
+import Zelle from '../../assets/images/Zelle.png'
+import { Image } from 'astro:assets';
+import Button from './Button.astro';
+---
+
+<WidgetWrapper>
+  <div class="flex flex-col justify-center items-center gap-8 text-center">
+    <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Payment Options</h3>
+
+    <Button class="bg-[#FCBB32] hover:bg-[#FAD077] border-[#2C2E2F]" data-astro-reload
+              variant="primary"
+              text="Pay With PayPal"
+              target="_blank"
+              href='https://www.paypal.com/ncp/payment/7W7LCYWPLP9TW'
+              icon= 'tabler:square-rounded-arrow-right'
+            >
+            </Button>
+
+    <div class="w-1/6">
+      <p class="text-lg"><b>Pay with Zelle</b></p>
+
+      <Image
+        src={Zelle}
+        class="justify-center items-center rounded dark:bg-transparent mt-2"
+        widths={[400, 900]}
+        width={400}
+        sizes="(max-width: 100px) 50px, 100px"
+        alt={''}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
+    <p class="text-xl sm:text-2xl">OR</p>
+    <p class="text-xl sm:text-2xl">Mail a check, payable to:</p>
+    <address class="text-xl sm:text-2xl">
+      RJ Croce Foundation, INC <br> 30 First Street Rumson, NJ 07760
+    </address>
+  </div>
+</WidgetWrapper>

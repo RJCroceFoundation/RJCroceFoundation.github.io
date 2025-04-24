@@ -1,0 +1,54 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import Pillars from '~/components/widgets/Pillars.astro';
+
+const metadata = {
+    title: 'Brookdale',
+};
+---
+  
+<Layout metadata={metadata}>
+    <Pillars 
+        title="Our Work"
+        sub_title="RJ Croce Meaningful Scholarships<br><p class='text-2xl'>Four $2,500 Scholarships<br>Brookdale Comunity College<p>"
+        information={[
+            "The RJ Croce Foundation, Inc. offers four $2,500 scholarships each year to Monmouth County resident first year students attending Brookdale Community College. The scholarships are awarded to students who exemplify one of the Four Pillars of the RJ Croce Meaningful Scholarship prompt and meet the minimum requirements. "
+        ]}
+
+        pillars = {[
+            {
+                "header":'Pillar I', 
+                "img_type": 2,
+                "title":"Friendship", 
+                "description":"",
+                "quote":"“A MAN'S FRIENDSHIPS ARE ONE OF THE BEST MEASURES OF HIS WORTH”",
+                "author":"Charles Darwin"
+            },
+            {
+                "header":'Pillar II', 
+                "img_type": 1,
+                "title":"Volunteering", 
+                "description":"",
+                "quote":"“TRY NOT TO BECOME A PERSON OF SUCCESS, BUT RATHER TRY TO BECOME A PERSON OF VALUE”",
+                "author":"Albert Einstein"
+            },
+            {
+                "header":'Pillar III', 
+                "img_type": 2,
+                "title":"Meaningfulness", 
+                "description":"",
+                "quote":"“I BELIEVE EVERY HUMAN HAS A FINITE NUMBER OF HEARTBEATS. I DON'T INTEND TO WASTE ANY OF MINE.”",
+                "author":"Neil Armstrong"
+            },
+            {
+                "header":'Pillar IV', 
+                "img_type": 1,
+                "title":"Leadership", 
+                "description":"",
+                "quote":"“IF YOUR ACTIONS INSPIRE OTHERS TO DREAM MORE, LEARN MORE, DO MORE, AND BECOME MORE, YOU ARE A LEADER.”",
+                "author":"John Quincy Adams"
+            },
+        ]}
+    />
+</Layout>
