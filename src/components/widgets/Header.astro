@@ -89,10 +89,10 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         <span class="rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white">
           <Image
           src="~/assets/images/RJ_Logo.jpg"
-          class="max-width:100px; height:auto; border-radius: 10%"
+          class="rounded max-width:100px; height:auto; border-radius: 10%"
           widths={[50, 100]}
           width={100}
-          sizes="(max-width: 100px) 500px, 100px"
+          sizes="(max-width: 100px) 50px, 100px"
           alt={'Foundation Logo'}
           layout="cover"
           loading="eager"
